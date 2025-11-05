@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Spirit Shelf</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'serif': ['"Playfair Display"', 'serif'],
+              'sans': ['Inter', 'sans-serif'],
+            },
+            colors: {
+              'brand-dark': '#121212',
+              'brand-surface': '#1e1e1e',
+              'brand-outline': '#3a3a3a',
+              'brand-light': '#e0e0e0',
+              'brand-muted': '#888888',
+              'brand-accent': '#d4af37',
+              'brand-accent-hover': '#e6c35c',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      /* Custom Range Slider Styles */
+      .custom-slider {
+        -webkit-appearance: none;
+        width: 100%;
+        background: transparent;
+      }
+
+      .custom-slider:focus {
+        outline: none;
+      }
+
+      /* Webkit (Chrome, Safari) */
+      .custom-slider::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 4px;
+        cursor: pointer;
+        background: #3a3a3a; /* brand-outline */
+        border-radius: 9999px;
+      }
+
+      .custom-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #d4af37; /* brand-accent */
+        cursor: pointer;
+        margin-top: -6px; /* (thumb height - track height) / 2 */
+        box-shadow: 0 0 2px rgba(0,0,0,0.5);
+        transition: background .2s;
+      }
+
+      .custom-slider:hover::-webkit-slider-thumb {
+        background: #e6c35c; /* brand-accent-hover */
+      }
+
+      /* Mozilla (Firefox) */
+      .custom-slider::-moz-range-track {
+        width: 100%;
+        height: 4px;
+        cursor: pointer;
+        background: #3a3a3a; /* brand-outline */
+        border-radius: 9999px;
+      }
+
+      .custom-slider::-moz-range-thumb {
+        height: 16px;
+        width: 16px;
+        border-radius: 50%;
+        background: #d4af37; /* brand-accent */
+        cursor: pointer;
+        border: none;
+        box-shadow: 0 0 2px rgba(0,0,0,0.5);
+        transition: background .2s;
+      }
+      
+      .custom-slider:hover::-moz-range-thumb {
+        background: #e6c35c; /* brand-accent-hover */
+      }
+
+      /* Animation for cards */
+      @keyframes globalFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .animate-global-fade-in {
+        animation: globalFadeIn 0.5s ease-out forwards;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.5",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "marked": "https://aistudiocdn.com/marked@^16.4.1",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^11.10.2",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^0.15.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-brand-dark text-brand-light font-sans">
+    <div id="root" class="animate-global-fade-in"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
