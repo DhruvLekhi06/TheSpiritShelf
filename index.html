@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Spirit Shelf</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'serif': ['"Playfair Display"', 'serif'],
+              'sans': ['Inter', 'sans-serif'],
+            },
+            colors: {
+              'brand-dark': '#0a0a0a',
+              'brand-surface': '#141414',
+              'brand-outline': '#262626',
+              'brand-light': '#f5f5f5',
+              'brand-muted': '#a3a3a3',
+              'brand-accent': {
+                DEFAULT: '#c0954b',
+                light: '#d4af37',
+                dark: '#a87c3a',
+              },
+              'brand-accent-hover': '#d4af37', // Kept for compatibility but suggest using brand-accent.light
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        position: relative;
+        isolation: isolate;
+      }
+      /* Grainy background texture */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><defs><filter id="a" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence baseFrequency=".7" stitchTiles="stitch"/></filter></defs><rect width="100%" height="100%" fill="transparent"/><rect width="100%" height="100%" fill="white" filter="url(%23a)"/></svg>');
+        opacity: 0.025;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      /* Custom Scrollbar Styles */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0a0a0a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: #262626;
+        border-radius: 10px;
+        border: 2px solid #0a0a0a;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: #c0954b;
+      }
+
+      /* Utility to hide scrollbars */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+
+      /* Polished Prose styles for Gemini content */
+      .prose {
+        --tw-prose-body: theme('colors.brand-muted');
+        --tw-prose-headings: theme('colors.brand-light');
+        --tw-prose-lead: theme('colors.brand-light');
+        --tw-prose-links: theme('colors.brand-accent.DEFAULT');
+        --tw-prose-bold: theme('colors.brand-light');
+        --tw-prose-counters: theme('colors.brand-muted');
+        --tw-prose-bullets: theme('colors.brand-outline');
+        --tw-prose-hr: theme('colors.brand-outline');
+        --tw-prose-quotes: theme('colors.brand-light');
+        --tw-prose-quote-borders: theme('colors.brand-outline');
+        --tw-prose-captions: theme('colors.brand-muted');
+        --tw-prose-code: theme('colors.brand-light');
+        --tw-prose-pre-code: theme('colors.brand-light');
+        --tw-prose-pre-bg: theme('colors.brand-dark');
+        --tw-prose-invert-body: theme('colors.brand-light');
+        --tw-prose-invert-headings: theme('colors.white');
+        --tw-prose-invert-lead: theme('colors.brand-light');
+        --tw-prose-invert-links: theme('colors.brand-accent.light');
+        --tw-prose-invert-bold: theme('colors.white');
+        --tw-prose-invert-counters: theme('colors.brand-light');
+        --tw-prose-invert-bullets: theme('colors.brand-accent.DEFAULT');
+        --tw-prose-invert-hr: theme('colors.brand-outline');
+        --tw-prose-invert-quotes: theme('colors.brand-light');
+        --tw-prose-invert-quote-borders: theme('colors.brand-accent.DEFAULT');
+        --tw-prose-invert-captions: theme('colors.brand-light');
+        --tw-prose-invert-code: theme('colors.white');
+        --tw-prose-invert-pre-code: theme('colors.brand-light');
+        --tw-prose-invert-pre-bg: theme('colors.black / 50%');
+        --tw-prose-invert-th-borders: theme('colors.brand-outline');
+        --tw-prose-invert-td-borders: theme('colors.brand-outline');
+      }
+
+      /* Custom Focus Ring for Accessibility */
+      *:focus-visible {
+          outline: 2px solid theme('colors.brand-accent.light') !important;
+          outline-offset: 2px !important;
+      }
+      
+      /* Custom Slider Thumb Styles */
+      .custom-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: #d4af37;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid #0a0a0a;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      }
+
+      .custom-slider::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: #d4af37;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid #0a0a0a;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      }
+
+      .custom-slider::-webkit-slider-thumb:hover {
+          transform: scale(1.1);
+          box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+      }
+
+      .custom-slider::-moz-range-thumb:hover {
+          transform: scale(1.1);
+          box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.5",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "marked": "https://aistudiocdn.com/marked@^16.4.1",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^11.10.2",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^0.15.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-brand-dark text-brand-light font-sans">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
