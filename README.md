@@ -72,9 +72,8 @@ Update based on implementation.
 
 - Frontend: React
 - Styling: Tailwind CSS
-- Backend: Node.js
-- AI: OpenAI or equivalent
-- Database: Your choice
+- Backend: Node.js and Typescript
+- Database: Neon
 
 ## Getting started
 
